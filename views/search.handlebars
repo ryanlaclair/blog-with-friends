@@ -26,13 +26,16 @@
   </div>
   <div class="text-left">
     {{#if nameResult}}
-    <h4 class="h4 mb-4 font-weight-normal">Username results:</h4>
+    <h4 class="h4 mb-3 font-weight-normal">Username results:</h4>
     {{#each nameResult}}
     {{this.username}} {{this.name.first}} {{this.name.last}}
     {{/each}}
     {{/if}}
     {{#if keywordResult}}
-    <h4 class="h4 mb-4 font-weight-normal">Keyword results:</h4>
+    <h4 class="h4 mb-3 font-weight-normal">Keyword results:</h4>
+    {{#each keywordResult}}
+    FILL THIS IN
+    {{/each}}
     {{/if}}
   </div>
 </div>
