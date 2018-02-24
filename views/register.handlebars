@@ -1,0 +1,23 @@
+<link rel='stylesheet' href='/css/login.css' />
+<div class="container container-login">
+  <h3 class="h3 mb-3 font-weight-normal">Register</h3>
+  {{#if message.length}}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+  {{/if}}
+  <form class="form-login" action="/register" method="post">
+    <label for="firstname" class="sr-only">First name</label>
+    <input type="text" name="firstname" class="form-control input-top" placeholder="First name" required autofocus>
+    <label for="lastname" class="sr-only">Last name</label>
+    <input type="text" name="lastname" class="form-control input-middle" placeholder="Last name" required>
+    <label for="email" class="sr-only">Email</label>
+    <input type="text" name="email" class="form-control input-middle" placeholder="Email" required>
+    <label for="username" class="sr-only">User name</label>
+    <input type="text" name="username" class="form-control input-middle" placeholder="User name" required>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" class="form-control input-bottom" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  </form>
+</div>
+<a href="/login">Log in</a>

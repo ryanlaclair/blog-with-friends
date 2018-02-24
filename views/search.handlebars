@@ -1,0 +1,38 @@
+<link rel='stylesheet' href='/css/search.css' />
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
+    <a class="navbar-brand" href="#">Blog With Friends</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/{{username}}">My Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Log out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container container-search">
+    <form class="form-search" action="/search" method="post">
+      <label for="search" class="sr-only">Search</label>
+      <input type="text" name="search" class="form-control" placeholder="Search" required autofocus>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="text-left">
+    {{#if nameResult}}
+    <h4 class="h4 mb-4 font-weight-normal">Username results:</h4>
+    {{#each nameResult}}
+    {{this.username}} {{this.name.first}} {{this.name.last}}
+    {{/each}}
+    {{/if}}
+    {{#if keywordResult}}
+    <h4 class="h4 mb-4 font-weight-normal">Keyword results:</h4>
+    {{/if}}
+  </div>
+</div>

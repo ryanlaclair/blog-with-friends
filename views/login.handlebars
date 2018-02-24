@@ -1,0 +1,17 @@
+<link rel='stylesheet' href='/css/login.css' />
+<div class="container container-login">
+  <h3 class="h3 mb-3 font-weight-normal">Log in</h3>
+  {{#if message}}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+  {{/if}}
+  <form class="form-login" action="/login" method="post">
+    <label for="username" class="sr-only">User name</label>
+    <input type="text" name="username" class="form-control input-top" placeholder="User name" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" class="form-control input-bottom" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+  </form>
+</div>
+<a href="/register">Register</a>
