@@ -1,16 +1,17 @@
 const express = require('express'),
-      Feed    = require('../models/feed');
+      Feed    = require('../models/feed'),
+      User    = require('../models/user');
 
 const feed = express.Router();
 
 feed.get('/', (req, res) => {
   res.render('feed', {
-    username: req.user.username,
+    username: req.user.username
   });;
 });
 
 feed.post('/', (req, res) => {
-  res.send('POST /feed');
+  User.addFriend(req.user.username, req.body.friendUsername);
 });
 
 feed.get('/:username', (req, res) => {
@@ -18,7 +19,7 @@ feed.get('/:username', (req, res) => {
 });
 
 feed.delete('/:username', (req, res) => {
-  res.send('DELETE /feed/:username');
+  User.removeFriend(req.user.username, req.params.username);
 });
 
 module.exports = feed;

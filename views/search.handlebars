@@ -29,6 +29,9 @@
     <h4 class="h4 mb-3 font-weight-normal">Username results:</h4>
     {{#each nameResult}}
     {{this.username}} {{this.name.first}} {{this.name.last}}
+    <a href="/feed/{{this.username}}"><button class="btn btn-sm btn-outline-primary">View blogs</button></a>
+    <button class="btn btn-sm btn-outline-success" onclick="handleAddFriend('{{this.username}}')">Add friend</button>
+    <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this.username}}')">Remove friend</button>
     {{/each}}
     {{/if}}
     {{#if keywordResult}}
