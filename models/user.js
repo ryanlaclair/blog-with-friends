@@ -17,23 +17,21 @@ let userSchema = new mongoose.Schema({
 // for authentication using passport and mongodb
 userSchema.plugin(passportLocalMongoose);
 
-// A static method on the User model to add a friend to the users feed.
-userSchema.statics.addFriend = function(username, friendUsername) {
-  Promise.all([
-    this.findOne({ username: username }).exec(),
-    this.findOne({ username: friendUsername }).exec()
-  ]).then((result) => {
-    result[0].update({ $push: { friends: result[1]._id }});
+// A method on a User model instance to add a friend to the users feed.
+userSchema.methods.addFriend = function(friendUsername) {
+  this.model('User').findOne({ username: friendUsername }, (err, user) => {
+    if (!err) {
+      this.update({ $addToSet: { friends: user._id }}).exec();;
+    }
   });
 }
 
-// A static method on the User model to remove a friend from the users feed.
-userSchema.statics.removeFriend = function(username, friendUsername) {
-  Promise.all([
-    this.findOne({ username: username }).exec(),
-    this.findOne({ username: friendUsername }).exec()
-  ]).then((result) => {
-    result[0].update({ $pull: { friends: result[1]._id }});
+// A method on a User model instance to remove a friend from the users feed.
+userSchema.methods.removeFriend = function(friendUsername) {
+  this.model('User').findOne({ username: friendUsername }, (err, user) => {
+    if (!err) {
+      this.update({ $pull: { friends: user._id }}).exec();;
+    }
   });
 }
 

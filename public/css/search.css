@@ -21,3 +21,7 @@
 .form-search .form-control:focus {
   z-index: 2;
 }
+
+.table-borderless td {
+  border: none;
+}

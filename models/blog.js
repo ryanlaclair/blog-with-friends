@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+      User     = require('./user');
 
 // the schema for a blog post
 let blogSchema = new mongoose.Schema({

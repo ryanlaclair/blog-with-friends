@@ -15,9 +15,7 @@ user.get('/', (req, res) => {
 // Render the feed view with the all of the personal blog posts for the
 // given user.
 user.get('/blogs', (req, res) => {
-  res.render('feed', {
-    username: req.user.username
-  });
+  
 });
 
 // POST /:username/blogs

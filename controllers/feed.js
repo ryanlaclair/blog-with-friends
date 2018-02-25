@@ -18,7 +18,8 @@ feed.get('/', (req, res) => {
 //
 // Add a blog friend to the logged in users feed.
 feed.post('/', (req, res) => {
-  User.addFriend(req.user.username, req.body.friendUsername);
+  req.user.addFriend(req.body.friendUsername);
+  res.end();
 });
 
 // GET /feed/:username
@@ -32,7 +33,8 @@ feed.get('/:username', (req, res) => {
 //
 // Remove a friend from the logged in users feed.
 feed.delete('/:username', (req, res) => {
-  User.removeFriend(req.user.username, req.params.username);
+  req.user.removeFriend(req.params.username);
+  res.end();
 });
 
 module.exports = feed;
