@@ -1,6 +1,3 @@
-$(document).ready(function() {
-  $
-})
 function handleAddFriend(username) {
   $.ajax({
     type: 'POST',

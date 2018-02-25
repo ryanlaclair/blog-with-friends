@@ -12,10 +12,7 @@ search.get('/', (req, res) => {
 });
 
 search.post('/', (req, res) => {
-  Promise.all([
-    Search.byName(req.body.search).exec(),
-    Search.byKeyword(req.body.search).exec()
-  ]).then((result) => {
+  Search(req.body.search).then((result) => {
     res.render('search', {
       username: req.user.username,
       nameResult: result[0],

@@ -13,7 +13,9 @@ let byKeyword = (keyword) => {
     .populate('author');
 }
 
-module.exports = {
-  byName: byName,
-  byKeyword: byKeyword
-};
+module.exports = (search) => {
+  return Promise.all([
+    byName(search).exec(),
+    byKeyword(search).exec()
+  ]);
+} 
