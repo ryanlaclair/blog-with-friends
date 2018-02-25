@@ -3,6 +3,10 @@ const express = require('express'),
 
 const search = express.Router();
 
+// GET /search
+//
+// Render the search view to allow the logged in user to do a username and
+// keyword search.
 search.get('/', (req, res) => {
   res.render('search', {
     username: req.user.username,
@@ -11,6 +15,9 @@ search.get('/', (req, res) => {
   });
 });
 
+// POST /search
+//
+// Perform a username and keyword search.
 search.post('/', (req, res) => {
   Search(req.body.search).then((result) => {
     res.render('search', {

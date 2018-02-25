@@ -1,6 +1,7 @@
 const mongoose              = require('mongoose'),
       passportLocalMongoose = require('passport-local-mongoose');;
 
+// the schema for a user
 let userSchema = new mongoose.Schema({
   name: {
     first: { type: String, required: true },
@@ -12,8 +13,11 @@ let userSchema = new mongoose.Schema({
   password: String
 });
 
+// use the passport-local-mongoose plugin to simplify hash and salt generation
+// for authentication using passport and mongodb
 userSchema.plugin(passportLocalMongoose);
 
+// A static method on the User model to add a friend to the users feed.
 userSchema.statics.addFriend = function(username, friendUsername) {
   Promise.all([
     this.findOne({ username: username }).exec(),
@@ -23,6 +27,7 @@ userSchema.statics.addFriend = function(username, friendUsername) {
   });
 }
 
+// A static method on the User model to remove a friend from the users feed.
 userSchema.statics.removeFriend = function(username, friendUsername) {
   Promise.all([
     this.findOne({ username: username }).exec(),

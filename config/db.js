@@ -1,3 +1,4 @@
+// the database credentials
 let credentials = {
 	host:     'localhost',
 	port: 		'27017',

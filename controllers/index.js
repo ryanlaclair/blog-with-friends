@@ -5,15 +5,15 @@ const express    = require('express'),
       search     = require('./search'),
       user       = require('./user'),
       blog       = require('./blog'),
-      verifyAuth = require('../config/auth').verifyAuth;
+      auth       = require('../config/auth');
 
 const router = express.Router();
 
 router.use('/', login);
-router.use('/feed', verifyAuth, feed);
-router.use('/search', verifyAuth, search);
-router.use('/:username', verifyAuth, user);
-router.use('/:username/blogs', verifyAuth, blog);
+router.use('/feed', auth.verifyAuth, feed);
+router.use('/search', auth.verifyAuth, search);
+router.use('/:username', auth.verifyAuth, user);
+router.use('/:username/blogs', auth.verifyAuth, auth.verifyUser, blog);
 
 router.use((req, res) => {
   res.status(404);

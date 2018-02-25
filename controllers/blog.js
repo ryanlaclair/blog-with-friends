@@ -2,24 +2,49 @@ const express = require('express');
 
 const blog = express.Router({ mergeParams: true });
 
+// GET /:username/blogs/new
+//
+// Render the edit view so that the user can create a new blog post.
 blog.get('/new', (req, res) => {
-  res.send('GET /:username/blogs/new');
+  res.render('edit', {
+    username: req.user.username,
+    form: {
+      action: '/' + req.params.username + '/blogs',
+      method: 'post'
+    }
+  });
 });
 
+// GET /:username/blogs/:id
+//
+// Render the blog view to show a single blog post of the given id.
 blog.get('/:id', (req, res) => {
-  res.send('GET /:username/blogs/:id');
+  res.render('blog');
 });
 
+// PUT /:username/blogs/:id
+//
+// Update a blog post with the given id.
 blog.put('/:id', (req, res) => {
-  res.send('PUT /:username/blogs/:id');
+  // update blog
 });
 
+// DELETE /:username/blogs/:id
+//
+// Remove a blog post with the given id.
 blog.delete('/:id', (req, res) => {
-  res.send('DELETE /:username/blogs/:id');
+  // remove blog
 });
 
+// GET /:username/blogs/:id/edit
 blog.get('/:id/edit', (req, res) => {
-  res.send('GET /:username/blogs/:id/edit');
+  res.render('edit', {
+    username: req.user.username,
+    form: {
+      action: '/' + req.params.username + '/blogs' + req.params.id,
+      method: 'put'
+    }
+  });
 });
 
 module.exports = blog;

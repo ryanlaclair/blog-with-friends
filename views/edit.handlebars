@@ -1,0 +1,31 @@
+<link rel='stylesheet' href='/css/edit.css' />
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
+    <a class="navbar-brand" href="#">Blog With Friends</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/{{username}}">My Blog</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Log out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container container-search">
+    <form class="form-edit" action="{{form.action}}" method="{{form.method}}">
+      <label for="title" class="sr-only">Title</label>
+      <input type="text" name="title" class="form-control" placeholder="Title" required autofocus>
+      <label for="body" class="sr-only">Blog</label>
+      <textarea name="body" class="form-control" rows="20" placeholder="Blog" required></textarea>
+      <label for="keywords" class="sr-only">Keywords</label>
+      <input type="text" name="keywords" class="form-control" placeholder="Keywords" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+    </form>
+  </div>
+</div>

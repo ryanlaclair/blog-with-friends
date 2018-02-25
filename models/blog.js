@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// the schema for a blog post
 let blogSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   title: String,
