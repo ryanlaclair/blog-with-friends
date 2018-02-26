@@ -1,4 +1,3 @@
-<link rel='stylesheet' href='/css/login.css' />
 <div class="container container-login">
   <h3 class="h3 mb-3 font-weight-normal">Register</h3>
   {{#if message.length}}
@@ -6,7 +5,7 @@
     {{message}}
   </div>
   {{/if}}
-  <form class="form-login" action="/register" method="post">
+  <form action="/register" method="post">
     <label for="firstname" class="sr-only">First name</label>
     <input type="text" name="firstname" class="form-control input-top" placeholder="First name" required autofocus>
     <label for="lastname" class="sr-only">Last name</label>

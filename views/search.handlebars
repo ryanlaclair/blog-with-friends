@@ -1,4 +1,3 @@
-<link rel='stylesheet' href='/css/search.css' />
 <div class="container">
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
     <a class="navbar-brand" href="#">Blog With Friends</a>
@@ -10,17 +9,17 @@
         <a class="nav-link" href="/{{username}}">My Blog</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Search</a>
+        <a class="nav-link" href="/search">Search</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Log out</a>
       </li>
     </ul>
   </nav>
-  <div class="container container-search">
-    <form class="form-search" action="/search" method="post">
+  <div class="container container-body">
+    <form action="/search" method="post">
       <label for="search" class="sr-only">Search</label>
-      <input type="text" name="search" class="form-control" placeholder="Search" required autofocus>
+      <input type="text" name="search" class="form-control search-bottom" placeholder="Search" required autofocus>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
     </form>
   </div>
@@ -50,9 +49,11 @@
         {{#each keywordResult}}
         <tr>
           <td>{{this.author.username}}</td>
-          <td>{{this.author.name.first}}</td>
-          <td>{{this.author.name.last}}</td>
+          <td>{{this.author.name.first}} {{this.author.name.last}}</td>
           <td>{{this.title}}</td>
+          <td>
+            <a href="/{{this.author.username}}/blogs/{{this._id}}"><button class="btn btn-sm btn-outline-primary">View</button></a>
+          </td>
         </tr>
         {{/each}}
       </tbody>

@@ -10,6 +10,7 @@ const feed = express.Router();
 // of the logged in users friends.
 feed.get('/', (req, res) => {
   res.render('feed', {
+    personal: false,
     username: req.user.username
   });;
 });
