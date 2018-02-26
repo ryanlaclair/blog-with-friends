@@ -25,39 +25,35 @@
   </div>
   <div class="text-left">
     {{#if nameResult}}
-    <h4 class="h4 mb-3 font-weight-normal">Username results:</h4>
-    <table class="table table-borderless">
-      <tbody>
-        {{#each nameResult}}
-        <tr>
-          <td>{{this.username}}</td>
-          <td>{{this.name.first}} {{this.name.last}}</td>
-          <td>
-            <a href="/feed/{{this.username}}"><button class="btn btn-sm btn-outline-primary">View blogs</button></a>
-            <button class="btn btn-sm btn-outline-success" onclick="handleAddFriend('{{this.username}}')">Add friend</button>
-            <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this.username}}')">Remove friend</button>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    <h4 class="h4 mb-3 font-weight-normal result-heading">Username results:</h4>
+    <div>
+      {{#each nameResult}}
+      <div class="row result-row">
+        <div class="col-2">{{this.username}}</div>
+        <div class="col-4">{{this.name.first}} {{this.name.last}}</div>
+        <div class="col-6 text-right">
+          <a href="/feed/{{this.username}}"><button class="btn btn-sm btn-outline-primary">View blogs</button></a>
+          <button class="btn btn-sm btn-outline-success" onclick="handleAddFriend('{{this.username}}')">Add friend</button>
+          <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this.username}}')">Remove friend</button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
     {{/if}}
     {{#if keywordResult}}
-    <h4 class="h4 mb-3 font-weight-normal">Keyword results:</h4>
-    <table class="table table-borderless">
-      <tbody>
-        {{#each keywordResult}}
-        <tr>
-          <td>{{this.author.username}}</td>
-          <td>{{this.author.name.first}} {{this.author.name.last}}</td>
-          <td>{{this.title}}</td>
-          <td>
-            <a href="/{{this.author.username}}/blogs/{{this._id}}"><button class="btn btn-sm btn-outline-primary">View</button></a>
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    <h4 class="h4 mb-3 font-weight-normal result-heading">Keyword results:</h4>
+    <div>
+      {{#each keywordResult}}
+      <div class="row result-row">
+        <div class="col-2">{{this.author.username}}</div>
+        <div class="col-3">{{this.author.name.first}} {{this.author.name.last}}</div>
+        <div class="col-3">{{this.title}}</div>
+        <div class="col-4 text-right">
+          <a href="/{{this.author.username}}/blogs/{{this._id}}"><button class="btn btn-sm btn-outline-primary">View post</button></a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
     {{/if}}
   </div>
 </div>

@@ -58,7 +58,13 @@ form {
 }
 
 .blog-feed-post {
-  border: solid 1px black;
-  padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.result-heading {
+  margin: 30px 0;
+}
+
+.result-row {
+  padding: 5px 0;
 }

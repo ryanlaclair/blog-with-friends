@@ -23,13 +23,6 @@ feed.post('/', (req, res) => {
   res.end();
 });
 
-// GET /feed/:username
-//
-// Redirect to the given users personal feed.
-feed.get('/:username', (req, res) => {
-  res.redirect('../' + req.params.username + '/blogs');
-});
-
 // DELETE /feed/:username
 //
 // Remove a friend from the logged in users feed.

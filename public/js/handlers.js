@@ -13,3 +13,10 @@ function handleRemoveFriend(username) {
     url: '/feed/' + username
   });
 }
+
+function handleDeleteBlog(username, id) {
+  $.ajax({
+    type: 'DELETE',
+    url: '/' + username + '/blogs/' + id
+  });
+}

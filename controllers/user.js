@@ -43,7 +43,7 @@ user.post('/blogs', auth.verifyUser, (req, res) => {
     body: req.body.body,
     keywords: keywordList
   }, (err, blog) => {
-    res.redirect('/blogs');
+    res.redirect('/' + req.params.username + '/blogs');
   });
 });
 

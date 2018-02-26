@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require('express')
+      Blog    = require('../models/blog');
 
 const blog = express.Router({ mergeParams: true });
 
@@ -33,7 +34,9 @@ blog.put('/:id', (req, res) => {
 //
 // Remove a blog post with the given id.
 blog.delete('/:id', (req, res) => {
-  // remove blog
+  Blog.remove({ _id: req.params.id }, (err) => {
+    res.redirect('/' + req.params.username + '/blogs');
+  });
 });
 
 // GET /:username/blogs/:id/edit
