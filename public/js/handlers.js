@@ -1,22 +1,25 @@
-function handleAddFriend(username) {
+function handleAddFriend(user) {
   $.ajax({
     type: 'POST',
     url: '/feed',
-    data: JSON.stringify({ friendUsername: username }),
+    data: JSON.stringify({ user: user }),
     contentType: 'application/json'
   });
 }
 
-function handleRemoveFriend(username) {
+function handleRemoveFriend(user) {
   $.ajax({
     type: 'DELETE',
-    url: '/feed/' + username
+    url: '/feed/' + user
   });
 }
 
-function handleDeleteBlog(username, id) {
+function handleDeleteBlog(user, blog) {
   $.ajax({
     type: 'DELETE',
-    url: '/' + username + '/blogs/' + id
+    url: '/' + user + '/blogs/' + blog,
+    success: (data, status, xhr) => {
+      window.location = data.redirect;
+    }
   });
 }

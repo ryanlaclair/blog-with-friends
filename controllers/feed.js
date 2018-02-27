@@ -11,7 +11,7 @@ const feed = express.Router();
 feed.get('/', (req, res) => {
   res.render('feed', {
     personal: false,
-    username: req.user.username
+    user: req.user
   });;
 });
 
@@ -19,15 +19,15 @@ feed.get('/', (req, res) => {
 //
 // Add a blog friend to the logged in users feed.
 feed.post('/', (req, res) => {
-  req.user.addFriend(req.body.friendUsername);
+  req.user.addFriend(req.body.user);
   res.end();
 });
 
-// DELETE /feed/:username
+// DELETE /feed/:user
 //
 // Remove a friend from the logged in users feed.
-feed.delete('/:username', (req, res) => {
-  req.user.removeFriend(req.params.username);
+feed.delete('/:user', (req, res) => {
+  req.user.removeFriend(req.params.user);
   res.end();
 });
 

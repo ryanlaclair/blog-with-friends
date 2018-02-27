@@ -6,7 +6,7 @@
         <a class="nav-link" href="/feed">Feed</a>
       </li>
       <li class="nav-item {{#if personal}}active{{/if}}">
-        <a class="nav-link" href="/{{username}}">My Blog</a>
+        <a class="nav-link" href="/{{user._id}}">My Blog</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/search">Search</a>
@@ -18,7 +18,7 @@
   </nav>
   <div class="container container-body">
     {{#if personal}}
-    <a href="/{{username}}/blogs/new"><button class="btn btn-lg btn-primary">New blog post</button></a>
+    <a href="/{{user._id}}/blogs/new" class="btn btn-lg btn-primary">New blog post</a>
     {{/if}}
   </div>
   <div class="text-left">
@@ -39,9 +39,9 @@
       </div>
       <div class="row">
         <div class="col-4">
-          <a href="/{{this.author.username}}/blogs/{{this._id}}"><button class="btn btn-sm btn-outline-primary">View</button></a>
-          <a href="/{{this.author.username}}/blogs/{{this._id}}/edit"><button class="btn btn-sm btn-outline-success">Edit</button></a>
-          <button class="btn btn-sm btn-outline-danger" onclick="handleDeleteBlog('{{this.author.username}}', '{{this._id}}')">Delete</button>
+          <a href="/{{this.author._id}}/blogs/{{this._id}}" class="btn btn-sm btn-outline-primary">View</a>
+          <a href="/{{this.author._id}}/blogs/{{this._id}}/edit" class="btn btn-sm btn-outline-success">Edit</a>
+          <button class="btn btn-sm btn-outline-danger" onclick="handleDeleteBlog('{{this.author._id}}', '{{this._id}}')">Delete</button>
         </div>
         <div class="col-8 align-self-end text-right">
           Keywords:

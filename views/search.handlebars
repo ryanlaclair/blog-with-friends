@@ -6,7 +6,7 @@
         <a class="nav-link" href="/feed">Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/{{username}}">My Blog</a>
+        <a class="nav-link" href="/{{user._id}}">My Blog</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/search">Search</a>
@@ -32,9 +32,9 @@
         <div class="col-2">{{this.username}}</div>
         <div class="col-4">{{this.name.first}} {{this.name.last}}</div>
         <div class="col-6 text-right">
-          <a href="/feed/{{this.username}}"><button class="btn btn-sm btn-outline-primary">View blogs</button></a>
-          <button class="btn btn-sm btn-outline-success" onclick="handleAddFriend('{{this.username}}')">Add friend</button>
-          <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this.username}}')">Remove friend</button>
+          <a href="/{{this._id}}" class="btn btn-sm btn-outline-primary">View blogs</a>
+          <button class="btn btn-sm btn-outline-success" onclick="handleAddFriend('{{this._id}}')">Add friend</button>
+          <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this._id}}')">Remove friend</button>
         </div>
       </div>
       {{/each}}
@@ -49,7 +49,7 @@
         <div class="col-3">{{this.author.name.first}} {{this.author.name.last}}</div>
         <div class="col-3">{{this.title}}</div>
         <div class="col-4 text-right">
-          <a href="/{{this.author.username}}/blogs/{{this._id}}"><button class="btn btn-sm btn-outline-primary">View post</button></a>
+          <a href="/{{this.author._id}}/blogs/{{this._id}}" class="btn btn-sm btn-outline-primary">View post</a>
         </div>
       </div>
       {{/each}}

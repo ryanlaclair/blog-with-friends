@@ -12,8 +12,8 @@ const router = express.Router();
 router.use('/', login);
 router.use('/feed', auth.verifyAuth, feed);
 router.use('/search', auth.verifyAuth, search);
-router.use('/:username', auth.verifyAuth, user);
-router.use('/:username/blogs', auth.verifyAuth, auth.verifyUser, blog);
+router.use('/:user', auth.verifyAuth, user);
+router.use('/:user/blogs', auth.verifyAuth, blog);
 
 router.use((req, res) => {
   res.status(404);

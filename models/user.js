@@ -18,21 +18,13 @@ let userSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose);
 
 // A method on a User model instance to add a friend to the users feed.
-userSchema.methods.addFriend = function(friendUsername) {
-  this.model('User').findOne({ username: friendUsername }, (err, user) => {
-    if (!err) {
-      this.update({ $addToSet: { friends: user._id }}).exec();;
-    }
-  });
+userSchema.methods.addFriend = function(user) {
+  this.update({ $addToSet: { friends: user }}).exec();;
 }
 
 // A method on a User model instance to remove a friend from the users feed.
-userSchema.methods.removeFriend = function(friendUsername) {
-  this.model('User').findOne({ username: friendUsername }, (err, user) => {
-    if (!err) {
-      this.update({ $pull: { friends: user._id }}).exec();;
-    }
-  });
+userSchema.methods.removeFriend = function(user) {
+  this.update({ $pull: { friends: user }}).exec();;
 }
 
 let User = mongoose.model('User', userSchema);

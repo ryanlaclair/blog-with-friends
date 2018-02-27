@@ -18,11 +18,11 @@ const verifyAuth = (req, res, next) => {
 // Middleware to verify that the logged in user matches the personal blog
 // feed that is being modified.
 const verifyUser = (req, res, next) => {
-  if (req.params.username == req.user.username) {
+  if (req.params.user == req.user._id) {
     return next();
   }
 
-  res.redirect('/' + req.user.username);
+  res.redirect('/' + req.user._id);
 }
 
 // set up passport serialization and deserialization for user session

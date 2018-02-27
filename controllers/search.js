@@ -9,7 +9,7 @@ const search = express.Router();
 // keyword search.
 search.get('/', (req, res) => {
   res.render('search', {
-    username: req.user.username,
+    user: req.user,
     nameResult: null,
     keywordResult: null
   });
@@ -21,7 +21,7 @@ search.get('/', (req, res) => {
 search.post('/', (req, res) => {
   Search(req.body.search).then((result) => {
     res.render('search', {
-      username: req.user.username,
+      user: req.user,
       nameResult: result[0],
       keywordResult: result[1]
     });
