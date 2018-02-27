@@ -3,14 +3,20 @@ function handleAddFriend(user) {
     type: 'POST',
     url: '/feed',
     data: JSON.stringify({ user: user }),
-    contentType: 'application/json'
+    contentType: 'application/json',
+    success: (data, status, xhr) => {
+      window.location = data.redirect;
+    }
   });
 }
 
 function handleRemoveFriend(user) {
   $.ajax({
     type: 'DELETE',
-    url: '/feed/' + user
+    url: '/feed/' + user,
+    success: (data, status, xhr) => {
+      window.location = data.redirect;
+    }
   });
 }
 

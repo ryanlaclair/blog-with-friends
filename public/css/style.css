@@ -11,8 +11,11 @@ form {
 
 .container-body {
   width: 100%;
-  max-width: 350px;
   margin: 20px auto;
+}
+
+.container-center {
+  max-width: 350px;
 }
 
 .container-edit {

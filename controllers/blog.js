@@ -1,6 +1,7 @@
-const express = require('express'),
-      auth    = require('../config/auth'),
-      Blog    = require('../models/blog');
+const express  = require('express'),
+      mongoose = require('mongoose'),
+      auth     = require('../config/auth'),
+      Blog     = require('../models/blog');
 
 const blog = express.Router({ mergeParams: true });
 
@@ -10,15 +11,23 @@ const blog = express.Router({ mergeParams: true });
 // the given user.
 blog.get('/', (req, res) => {
   let blogDocument = Blog
-    .find({ author: req.user._id })
+    .find({ author: req.params.user })
     .populate('author');
   
   blogDocument.exec((err, blogs) => {
     if (!err) {
-      res.render('feed', {
-        personal: true,
+      let friends = req.user.friends.map((friend) => {
+        return friend._id.toString();
+      });
+
+      res.render('user', {
+        personal: (req.params.user == req.user._id),
         user: req.user,
-        blogs: blogs
+        blogs: blogs,
+        other: {
+          id: req.params.user,
+          friend: (friends.includes(req.params.user))
+        }
       });
     }
   });

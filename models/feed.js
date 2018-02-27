@@ -1,16 +1,16 @@
 const mongoose = require('mongoose'),
       Blog     = require('./blog');
 
-class Feed {
-  
-  getPosts(friends) {
-    let posts = [];
+module.exports = (friends) => {
+  let promises = [];
 
-    for (friend in friends) {
-      
-    }
+  for (i=0; i<friends.length; i++) {
+    promises.push(Blog
+      .findOne({ author: friends[i]._id })
+      .populate('author')
+      .exec()
+    );
   }
 
+  return Promise.all(promises);
 }
-
-module.exports = Feed;

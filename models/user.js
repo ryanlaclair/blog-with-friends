@@ -15,7 +15,9 @@ let userSchema = new mongoose.Schema({
 
 // use the passport-local-mongoose plugin to simplify hash and salt generation
 // for authentication using passport and mongodb
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, {
+  populateFields: 'friends'
+});
 
 // A method on a User model instance to add a friend to the users feed.
 userSchema.methods.addFriend = function(user) {

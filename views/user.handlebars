@@ -2,10 +2,10 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
     <a class="navbar-brand" href="#">Blog With Friends</a>
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item {{#unless personal}}active{{/unless}}">
         <a class="nav-link" href="/feed">Feed</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item {{#if personal}}active{{/if}}">
         <a class="nav-link" href="/{{user._id}}">My Blog</a>
       </li>
       <li class="nav-item">
@@ -16,7 +16,20 @@
       </li>
     </ul>
   </nav>
-  <div class="container-body text-left">
+  <div class="container container-body container-center">
+    {{#if personal}}
+    <a href="/{{user._id}}/blogs/new" class="btn btn-lg btn-primary">New blog post</a>
+    {{/if}}
+    {{#unless personal}}
+    {{#if other.friend}}
+    <button class="btn btn-lg btn-outline-danger" onclick="handleRemoveFriend('{{other.id}}')">Remove friend</button>
+    {{/if}}
+    {{#unless other.friend}}
+    <button class="btn btn-lg btn-outline-success" onclick="handleAddFriend('{{other.id}}')">Add friend</button>
+    {{/unless}}
+    {{/unless}}
+  </div>
+  <div class="text-left">
     {{#each blogs}}
     <div class="blog-feed-post">
       <div class="row">
@@ -35,7 +48,10 @@
       <div class="row">
         <div class="col-4">
           <a href="/{{this.author._id}}/blogs/{{this._id}}" class="btn btn-sm btn-outline-primary">View</a>
-          <button class="btn btn-sm btn-outline-danger" onclick="handleRemoveFriend('{{this.author._id}}', '{{this._id}}')">Remove friend</button>
+          {{#if personal}}
+          <a href="/{{this.author._id}}/blogs/{{this._id}}/edit" class="btn btn-sm btn-outline-success">Edit</a>
+          <button class="btn btn-sm btn-outline-danger" onclick="handleDeleteBlog('{{this.author._id}}', '{{this._id}}')">Delete</button>
+          {{/if}}
         </div>
         <div class="col-8 align-self-end text-right">
           Keywords:
