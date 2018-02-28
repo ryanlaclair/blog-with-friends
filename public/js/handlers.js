@@ -20,6 +20,38 @@ function handleRemoveFriend(user) {
   });
 }
 
+function handleCreateBlog(user) {
+  $.ajax({
+    type: 'POST',
+    url: '/' + user + '/blogs',
+    data: JSON.stringify({ 
+      title: $('#title').val(),
+      body: $('#body').val(),
+      keywords: $('#keywords').val()
+    }),
+    contentType: 'application/json',
+    success: (data, status, xhr) => {
+      window.location = data.redirect;
+    }
+  });
+}
+
+function handleEditBlog(user, blog) {
+  $.ajax({
+    type: 'PUT',
+    url: '/' + user + '/blogs/' + blog,
+    data: JSON.stringify({ 
+      title: $('#title').val(),
+      body: $('#body').val(),
+      keywords: $('#keywords').val()
+    }),
+    contentType: 'application/json',
+    success: (data, status, xhr) => {
+      window.location = data.redirect;
+    }
+  });
+}
+
 function handleDeleteBlog(user, blog) {
   $.ajax({
     type: 'DELETE',

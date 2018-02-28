@@ -45,7 +45,7 @@ blog.post('/', auth.verifyUser, (req, res) => {
     body: req.body.body,
     keywords: keywordList
   }, (err, blog) => {
-    res.redirect('/' + req.params.user + '/blogs');
+    res.send({ redirect: '/' + req.params.user });
   });
 });
 
@@ -54,26 +54,32 @@ blog.post('/', auth.verifyUser, (req, res) => {
 // Render the edit view so that the user can create a new blog post.
 blog.get('/new', auth.verifyUser, (req, res) => {
   res.render('edit', {
-    user: req.user,
-    form: {
-      action: '/' + req.params.user + '/blogs',
-      method: 'post'
-    }
+    user: req.user
   });
 });
 
-// GET /:user/blogs/:blog
+// GET /:user/blogs/:id
 //
 // Render the blog view to show a single blog post of the given id.
-blog.get('/:blog', (req, res) => {
+blog.get('/:id', (req, res) => {
   res.render('blog');
 });
 
-// PUT /:user/blogs/:blog
+// PUT /:user/blogs/:id
 //
 // Update a blog post with the given id.
-blog.put('/:blog', auth.verifyUser, (req, res) => {
-  // update blog
+blog.put('/:id', auth.verifyUser, (req, res) => {
+  let keywordList = req.body.keywords.split(/[ ,]+/);
+
+  Blog.findOne({ _id: req.params.id }, (err, blog) => {
+    blog.title = req.body.title;
+    blog.body = req.body.body;
+    blog.keywords = keywordList;
+
+    blog.save((err, newBlog) => {
+      res.send({ redirect: '/' + req.params.user });
+    });
+  });
 });
 
 // DELETE /:user/blogs/:blog
@@ -87,12 +93,16 @@ blog.delete('/:id', auth.verifyUser, (req, res) => {
 
 // GET /:user/blogs/:id/edit
 blog.get('/:id/edit', auth.verifyUser, (req, res) => {
-  res.render('edit', {
-    user: req.user,
-    form: {
-      action: '/' + req.params.user + '/blogs' + req.params.id,
-      method: 'put'
-    }
+  Blog.findOne({ _id: req.params.id }, (err, blog) => {
+    res.render('edit', {
+      user: req.user,
+      blog: {
+        title: blog.title,
+        body: blog.body,
+        keywords: blog.keywords,
+        id: blog._id
+      }
+    });
   });
 });
 

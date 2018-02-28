@@ -26,32 +26,39 @@
   <div class="text-left">
     {{#if nameResult}}
     <h4 class="h4 mb-3 font-weight-normal result-heading">Username results:</h4>
-    <div>
-      {{#each nameResult}}
-      <div class="row result-row">
-        <div class="col-2">{{this.username}}</div>
-        <div class="col-6">{{this.name.first}} {{this.name.last}}</div>
-        <div class="col-4 text-right">
-          <a href="/{{this._id}}" class="btn btn-sm btn-outline-primary">View blogs</a>
-        </div>
-      </div>
-      {{/each}}
+    <div class="row result-row">
+      <div class="col-3 font-weight-bold">Username</div>
+      <div class="col-7 font-weight-bold">Name</div>
     </div>
+    {{#each nameResult}}
+    <div class="row result-row">
+      <div class="col-3">{{this.username}}</div>
+      <div class="col-7">{{this.name.first}} {{this.name.last}}</div>
+      <div class="col-2 text-right">
+        <a href="/{{this._id}}" class="btn btn-sm btn-outline-primary">View blogs</a>
+      </div>
+    </div>
+    {{/each}}
     {{/if}}
     {{#if keywordResult}}
     <h4 class="h4 mb-3 font-weight-normal result-heading">Keyword results:</h4>
-    <div>
-      {{#each keywordResult}}
-      <div class="row result-row">
-        <div class="col-2">{{this.author.username}}</div>
-        <div class="col-3">{{this.author.name.first}} {{this.author.name.last}}</div>
-        <div class="col-3">{{this.title}}</div>
-        <div class="col-4 text-right">
-          <a href="/{{this.author._id}}/blogs/{{this._id}}" class="btn btn-sm btn-outline-primary">View post</a>
-        </div>
-      </div>
-      {{/each}}
+    <div class="row result-row">
+      <div class="col-3 font-weight-bold">Name</div>
+      <div class="col-3 font-weight-bold  ">Title</div>
+      <div class="col-4 font-weight-bold">Keywords</div>
     </div>
+    {{#each keywordResult}}
+    <div class="row result-row">
+      <div class="col-3">{{this.author.name.first}} {{this.author.name.last}}</div>
+      <div class="col-3">{{this.title}}</div>
+      <div class="col-4">
+        {{#each this.keywords}}{{this}}, {{/each}}
+      </div>
+      <div class="col-2 text-right">
+        <a href="/{{this.author._id}}" class="btn btn-sm btn-outline-primary">View blogs</a>
+      </div>
+    </div>
+    {{/each}}
     {{/if}}
   </div>
 </div>

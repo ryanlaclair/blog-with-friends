@@ -18,6 +18,7 @@
   </nav>
   <div class="container-body text-left">
     {{#each blogs}}
+    {{#if this}}
     <div class="blog-feed-post">
       <div class="row">
         <div class="col-9">
@@ -45,6 +46,7 @@
         </div>
       </div>
     </div>
+    {{/if}}
     {{/each}}
   </div>
 </div>

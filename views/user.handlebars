@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col-4">
           <a href="/{{this.author._id}}/blogs/{{this._id}}" class="btn btn-sm btn-outline-primary">View</a>
-          {{#if personal}}
+          {{#if ../personal}}
           <a href="/{{this.author._id}}/blogs/{{this._id}}/edit" class="btn btn-sm btn-outline-success">Edit</a>
           <button class="btn btn-sm btn-outline-danger" onclick="handleDeleteBlog('{{this.author._id}}', '{{this._id}}')">Delete</button>
           {{/if}}
