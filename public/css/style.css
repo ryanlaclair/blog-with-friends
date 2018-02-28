@@ -1,3 +1,7 @@
+/* Ryan LaClair */
+/* MET CS602 - Server Side Web Development */
+/* Final Project */
+
 form {
   width: 100%;
   margin: 0 auto;
@@ -70,4 +74,8 @@ form {
 
 .result-row {
   padding: 5px 0;
+}
+
+.blog-space {
+  padding: 7px 0;
 }

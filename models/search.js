@@ -1,3 +1,7 @@
+// Ryan LaClair
+// MET CS602 - Server Side Web Development
+// Final Project
+
 const mongoose = require('mongoose'),
       User     = require('./user'),
       Blog     = require('./blog');
@@ -15,7 +19,11 @@ let byKeyword = (keyword) => {
     .populate('author');
 }
 
+// perform username and keyword search
 module.exports = (search) => {
+  // sanitize input for regex
+  search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+
   return Promise.all([
     byName(search).exec(),
     byKeyword(search).exec()

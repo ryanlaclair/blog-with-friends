@@ -1,0 +1,39 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
+    <a class="navbar-brand" href="#">Blog With Friends</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/feed">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/{{user._id}}">My Blogs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/search">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Log out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container-body text-left">
+    <div class="blog-feed-post">
+      <div class="row blog-space">
+        <div class="col-8">
+          <h4 class="h4">{{blog.title}}</h4>
+        </div>
+        <div class="col-4 text-right">{{blog.author.name.first}} {{blog.author.name.last}}</div>
+      </div>
+      <div class="row blog-space">
+        <div class="col-12">
+          {{blog.body}}
+        </div>
+      </div>
+      <div class="row blog-space">
+        <div class="col-12">
+          Keywords: {{#each blog.keywords}}{{this}}, {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,7 @@
+// Ryan LaClair
+// MET CS602 - Server Side Web Development
+// Final Project
+
 const express = require('express'),
       Search  = require('../models/search');
 

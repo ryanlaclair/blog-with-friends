@@ -2,11 +2,11 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary justify-content-between">
     <a class="navbar-brand" href="#">Blog With Friends</a>
     <ul class="navbar-nav">
-      <li class="nav-item {{#unless personal}}active{{/unless}}">
+      <li class="nav-item">
         <a class="nav-link" href="/feed">Feed</a>
       </li>
       <li class="nav-item {{#if personal}}active{{/if}}">
-        <a class="nav-link" href="/{{user._id}}">My Blog</a>
+        <a class="nav-link" href="/{{user._id}}">My Blogs</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/search">Search</a>
@@ -54,10 +54,7 @@
           {{/if}}
         </div>
         <div class="col-8 align-self-end text-right">
-          Keywords:
-          {{#each this.keywords}}
-            {{this}}
-          {{/each}}
+          Keywords: {{#each this.keywords}}{{this}}, {{/each}}
         </div>
       </div>
     </div>

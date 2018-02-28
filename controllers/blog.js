@@ -1,3 +1,7 @@
+// Ryan LaClair
+// MET CS602 - Server Side Web Development
+// Final Project
+
 const express  = require('express'),
       mongoose = require('mongoose'),
       auth     = require('../config/auth'),
@@ -10,27 +14,26 @@ const blog = express.Router({ mergeParams: true });
 // Render the personal feed view with the all of the personal blog posts for 
 // the given user.
 blog.get('/', (req, res) => {
-  let blogDocument = Blog
+  Blog
     .find({ author: req.params.user })
-    .populate('author');
-  
-  blogDocument.exec((err, blogs) => {
-    if (!err) {
-      let friends = req.user.friends.map((friend) => {
-        return friend._id.toString();
-      });
+    .populate('author')
+    .exec((err, blogs) => {
+      if (!err) {
+        let friends = req.user.friends.map((friend) => {
+          return friend._id.toString();
+        });
 
-      res.render('user', {
-        personal: (req.params.user == req.user._id),
-        user: req.user,
-        blogs: blogs,
-        other: {
-          id: req.params.user,
-          friend: (friends.includes(req.params.user))
-        }
-      });
-    }
-  });
+        res.render('user', {
+          personal: (req.params.user == req.user._id),
+          user: req.user,
+          blogs: blogs,
+          other: {
+            id: req.params.user,
+            friend: (friends.includes(req.params.user))
+          }
+        });
+      }
+    });
 });
 
 // POST /:user/blogs
@@ -62,7 +65,16 @@ blog.get('/new', auth.verifyUser, (req, res) => {
 //
 // Render the blog view to show a single blog post of the given id.
 blog.get('/:id', (req, res) => {
-  res.render('blog');
+  Blog
+    .findOne({ _id: req.params.id })
+    .populate('author')
+    .exec((err, blog) => {
+      res.render('blog', {
+        personal: (req.params.user == req.user._id),
+        user: req.user,
+        blog: blog
+      });
+    });
 });
 
 // PUT /:user/blogs/:id

@@ -1,3 +1,7 @@
+// Ryan LaClair
+// MET CS602 - Server Side Web Development
+// Final Project
+
 function handleAddFriend(user) {
   $.ajax({
     type: 'POST',
