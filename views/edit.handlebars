@@ -22,11 +22,11 @@
       <input type="text" id="title" class="form-control input-top" placeholder="Title" required autofocus
         {{#if blog}}value="{{blog.title}}"{{/if}}>
       <label for="body" class="sr-only">Blog</label>
-      {{#if blog}}<textarea id="body" class="form-control input-middle" rows="20" placeholder="Blog" required>{{blog.body}}</textarea>{{/if}}
+      <textarea id="body" class="form-control input-middle" rows="20" placeholder="Blog" required>{{#if blog}}{{blog.body}}{{/if}}</textarea>
       <label for="keywords" class="sr-only">Keywords</label>
       <input type="text" id="keywords" class="form-control input-bottom" placeholder="Keywords" required
         {{#if blog}}value="{{#each blog.keywords}}{{this}}, {{/each}}"{{/if}}>
-      <button class="btn btn-lg btn-success btn-block" onclick="{{#if blog}}handleEditBlog('{{user._id}}', '{{blog.id}}'){{/if}}{{#unless blog}}handleCreateBlog('{{user._id}}'){{/unless}}">Post</button>
+      <button class="btn btn-lg btn-primary btn-block" onclick="{{#if blog}}handleEditBlog('{{user._id}}', '{{blog.id}}'){{/if}}{{#unless blog}}handleCreateBlog('{{user._id}}'){{/unless}}">Post</button>
     </form>
   </div>
 </div>
