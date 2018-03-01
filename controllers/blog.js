@@ -2,16 +2,18 @@
 // MET CS602 - Server Side Web Development
 // Final Project
 
-const express  = require('express'),
-      mongoose = require('mongoose'),
-      auth     = require('../config/auth'),
-      Blog     = require('../models/blog');
+const express   = require('express'),
+      mongoose  = require('mongoose'),
+      passport  = require('passport'),
+      jsontoxml = require('jsontoxml');
+      auth      = require('../config/auth'),
+      Blog      = require('../models/blog');
 
 const blog = express.Router({ mergeParams: true });
 
 // GET /:user/blogs
 //
-// Render the personal feed view with the all of the personal blog posts for 
+// Render the user blog feed view with the all of the personal blog posts for 
 // the given user.
 blog.get('/', (req, res) => {
   Blog

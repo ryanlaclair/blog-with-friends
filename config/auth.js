@@ -12,11 +12,19 @@ const localStrategy = new LocalStrategy(User.authenticate());
 // Middleware to verify that the user is authenticated, used on all routes
 // except login and register.
 const verifyAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
+  console.log('verify');
 
-  res.redirect('/login');
+  if (req.accepts('text/html')) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+
+    res.redirect('/login');
+  }
+  else {
+    res.status(404);
+    res.send("<b>404 - Not Found</b>");
+  }
 }
 
 // Middleware to verify that the logged in user matches the personal blog
