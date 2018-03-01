@@ -14,6 +14,7 @@ const express    = require('express'),
 
 const router = express.Router();
 
+// set up all routes
 router.use('/api', api);
 router.use('/', login);
 router.use('/feed', auth.verifyAuth, feed);
@@ -21,6 +22,7 @@ router.use('/search', auth.verifyAuth, search);
 router.use('/:user', auth.verifyAuth, user);
 router.use('/:user/blogs', auth.verifyAuth, blog);
 
+// for all undefined routes
 router.use((req, res) => {
   res.status(404);
   res.send("<b>404 - Not Found</b>");

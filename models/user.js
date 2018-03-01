@@ -17,7 +17,7 @@ let userSchema = new mongoose.Schema({
   password: String
 });
 
-// use the passport-local-mongoose plugin to simplify hash and salt generation
+// Use the passport-local-mongoose plugin to simplify hash and salt generation
 // for authentication using passport and mongodb
 userSchema.plugin(passportLocalMongoose, {
   populateFields: 'friends'

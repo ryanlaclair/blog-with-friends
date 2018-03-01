@@ -106,6 +106,8 @@ blog.delete('/:id', auth.verifyUser, (req, res) => {
 });
 
 // GET /:user/blogs/:id/edit
+//
+// Render the edit view for an existing blog post.
 blog.get('/:id/edit', auth.verifyUser, (req, res) => {
   Blog.findOne({ _id: req.params.id }, (err, blog) => {
     res.render('edit', {

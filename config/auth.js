@@ -12,8 +12,6 @@ const localStrategy = new LocalStrategy(User.authenticate());
 // Middleware to verify that the user is authenticated, used on all routes
 // except login and register.
 const verifyAuth = (req, res, next) => {
-  console.log('verify');
-
   if (req.accepts('text/html')) {
     if (req.isAuthenticated()) {
       return next();

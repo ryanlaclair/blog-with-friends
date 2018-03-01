@@ -2,6 +2,7 @@
 // MET CS602 - Server Side Web Development
 // Final Project
 
+// Handle adding a friend to a user feed.
 function handleAddFriend(user) {
   $.ajax({
     type: 'POST',
@@ -14,6 +15,7 @@ function handleAddFriend(user) {
   });
 }
 
+// Handle removing a friend from the user feed.
 function handleRemoveFriend(user) {
   $.ajax({
     type: 'DELETE',
@@ -24,6 +26,7 @@ function handleRemoveFriend(user) {
   });
 }
 
+// Handle creating a new blog post.
 function handleCreateBlog(user) {
   $.ajax({
     type: 'POST',
@@ -40,6 +43,7 @@ function handleCreateBlog(user) {
   });
 }
 
+// Handle editing a blog post.
 function handleEditBlog(user, blog) {
   $.ajax({
     type: 'PUT',
@@ -56,6 +60,7 @@ function handleEditBlog(user, blog) {
   });
 }
 
+// Handle deleting a blog post.
 function handleDeleteBlog(user, blog) {
   $.ajax({
     type: 'DELETE',

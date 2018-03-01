@@ -10,6 +10,9 @@ const express   = require('express'),
 
 const api = express.Router({ mergeParams: true });
 
+// GET /api/users
+//
+// Get the complete list of application users
 api.get('/users', (req, res) => {
   User
     .find({ })
@@ -40,6 +43,9 @@ api.get('/users', (req, res) => {
     });
 });
 
+// GET /api/users/:user
+//
+// Get the information for the given user.
 api.get('/users/:user', (req, res) => {
   User
     .findOne({ _id: req.params.user })
@@ -83,7 +89,7 @@ api.get('/users/:user', (req, res) => {
 
 // GET api/:user/blogs
 //
-// Get the list of blogs for a user
+// Get the list of blogs for the given user.
 api.get('/users/:user/blogs', (req, res) => {
   Blog
     .find({ author: req.params.user })

@@ -5,6 +5,7 @@
 const mongoose = require('mongoose'),
       Blog     = require('./blog');
 
+// Find all the most recent blog posts from each friend of a user.
 module.exports = (friends) => {
   return Promise.all(friends.map((friend) => {
     return Blog
